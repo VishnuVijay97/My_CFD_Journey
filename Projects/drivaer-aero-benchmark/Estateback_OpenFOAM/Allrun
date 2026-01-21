@@ -1,0 +1,62 @@
+#!/bin/bash
+cd "${0%/*}" || exit 1    # Always run from script directory
+
+# ----------------------------
+# 0) OpenFOAM environment
+# ----------------------------
+# IMPORTANT:
+# - If you already run inside an OpenFOAM-sourced terminal, you can comment this out.
+# - If not, replace the path below with your OpenFOAM bashrc path.
+#
+# Example:
+# source /opt/openfoam2412/etc/bashrc
+#
+# Fallback (only works if WM_PROJECT_DIR is already set):
+# source $WM_PROJECT_DIR/etc/bashrc
+
+# ----------------------------
+# 1) Housekeeping
+# ----------------------------
+mkdir -p logs
+
+# Remove old time folders but KEEP 0/ (avoid deleting initial conditions)
+foamListTimes -rm -noZero > logs/log.cleanTimes 2>&1 || true
+
+# ----------------------------
+# 2) Mesh conversion
+# ----------------------------
+# Mesh is expected here:
+# ../data/estateback.msh
+#
+# If your mesh file is named differently, change the path below.
+fluentMeshToFoam ../data/estateback.msh > logs/log.meshConversion 2>&1
+
+# ----------------------------
+# 3) Mesh quality check
+# ----------------------------
+checkMesh > logs/log.checkMesh 2>&1
+
+# ----------------------------
+# 4) Parallel setup and run
+# ----------------------------
+decomposePar -force > logs/log.decomposePar 2>&1
+
+# Replace solver name if your case uses a different solver.
+# Replace -np 4 with your core count.
+mpirun -np 4 simpleFoam -parallel > logs/log.simpleFoam 2>&1
+
+reconstructPar > logs/log.reconstructPar 2>&1
+
+# ----------------------------
+# 5) Post-processing
+# ----------------------------
+# Works only if 'forces' is configured properly (patches, rhoRef, etc.).
+postProcess -func "forces" > logs/log.postProcess 2>&1 || true
+
+# Prepare paraFoam file for ParaView
+paraFoam -touch > /dev/null 2>&1 || true
+
+# Optional: remove processor folders to save disk
+rm -rf processor*
+
+echo "Workflow finished. Check run_case/logs/ for details."
