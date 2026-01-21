@@ -1,0 +1,21 @@
+# =========================
+# DrivAer ANSYS: keep only curated pack
+# =========================
+
+# Ignore everything inside this big run folder...
+Estateback_Ansys/**
+
+# ...but keep the curated data folder
+!Estateback_Ansys/data/
+!Estateback_Ansys/data/**
+
+# Keep a few "hero" images only (optional)
+!Estateback_Ansys/pr_present.png
+!Estateback_Ansys/vel_present.png
+!Estateback_Ansys/streamline.png
+!Estateback_Ansys/vector_prplot.png
+
+# Explicitly ignore the junk types (belt + suspenders)
+**/*.trn
+**/*.mp4
+
