@@ -1,0 +1,43 @@
+# =========================
+# CFD / OpenFOAM generated
+# =========================
+**/processor*/
+**/postProcessing/
+**/VTK/
+**/log.*
+**/*.foam
+
+# OpenFOAM mesh (generated + huge)
+**/constant/polyMesh/
+**/constant/**/polyMesh/
+
+# OpenFOAM time folders (keep 0/ and 0.orig; ignore solved times)
+**/[1-9]*/
+**/[1-9]*.[0-9]*
+**/[1-9]*e[-+][0-9]*
+
+# =========================
+# Fluent / large binaries
+# =========================
+**/*.cas
+**/*.dat
+**/*.cas.h5
+**/*.dat.h5
+**/*.msh
+**/*.msh.gz
+**/*.msh.h5
+**/*.trn
+**/*.pmdb
+
+# =========================
+# Your automation outputs
+# =========================
+**/run_*/
+**/logs/
+
+# =========================
+# OS/editor noise
+# =========================
+.DS_Store
+Thumbs.db
+*~
