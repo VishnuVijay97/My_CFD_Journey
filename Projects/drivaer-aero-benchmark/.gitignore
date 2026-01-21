@@ -2,8 +2,6 @@
 # DrivAer ANSYS: keep only curated pack
 # =========================
 
-# Ignore everything inside this big run folder...
-Estateback_Ansys/**
 
 # ...but keep the curated data folder
 !Estateback_Ansys/data/
