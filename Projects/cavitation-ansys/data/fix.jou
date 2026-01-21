@@ -1,0 +1,143 @@
+/file/read-case-data "orifice.cas.h5"
+ok
+
+/solve/monitors/residual/print? yes
+/solve/monitors/residual/plot? yes
+
+/solve/report-definitions/add
+mfr_outlet
+flux
+zone-names
+outlet
+()
+quit
+
+; --- Outlet pressure 0.5 bar (50000 Pa) ---
+/define/boundary-conditions
+set
+pressure-outlet
+outlet
+()
+mixture
+gauge-pressure
+no
+50000
+quit
+
+/solve/initialize/hyb-initialization
+yes
+/solve/iterate 50
+yes
+/file/write-case-data "orifice0.5p.cas.h5"
+yes
+/file/write-data "orifice0.5p.dat.h5"
+yes
+
+
+; --- Outlet pressure 1.0 bar (100000 Pa) ---
+/define/boundary-conditions
+set
+pressure-outlet
+outlet
+()
+mixture
+gauge-pressure
+no
+100000
+quit
+
+/solve/initialize/hyb-initialization
+yes
+/solve/iterate 50
+yes
+/file/write-case-data "orifice1p.cas.h5"
+yes
+/file/write-data "orifice1p.dat.h5"
+yes
+
+
+; --- Outlet pressure 1.5 bar (150000 Pa) ---
+/define/boundary-conditions
+set
+pressure-outlet
+outlet
+()
+mixture
+gauge-pressure
+no
+150000
+quit
+
+/solve/initialize/hyb-initialization
+yes
+/solve/iterate 50
+yes
+/file/write-case-data "orifice1.5p.cas.h5"
+yes
+/file/write-data "orifice1.5p.dat.h5"
+yes
+
+; --- Outlet pressure 2.0 bar (200000 Pa) ---
+/define/boundary-conditions
+set
+pressure-outlet
+outlet
+()
+mixture
+gauge-pressure
+no
+200000
+quit
+
+/solve/initialize/hyb-initialization
+yes
+/solve/iterate 50
+yes
+/file/write-case-data "orifice2p.cas.h5"
+yes
+/file/write-data "orifice2p.dat.h5"
+yes
+
+; --- Outlet pressure 2.5 bar (250000 Pa) ---
+/define/boundary-conditions
+set
+pressure-outlet
+outlet
+()
+mixture
+gauge-pressure
+no
+250000
+quit
+
+/solve/initialize/hyb-initialization
+yes
+/solve/iterate 50
+yes
+/file/write-case-data "orifice2.5p.cas.h5"
+yes
+/file/write-data "orifice2.5p.dat.h5"
+yes
+
+
+; --- Outlet pressure 3.0 bar (300000 Pa) ---
+/define/boundary-conditions
+set
+pressure-outlet
+outlet
+()
+mixture
+gauge-pressure
+no
+300000
+quit
+
+/solve/initialize/hyb-initialization
+yes
+/solve/iterate 50
+yes
+/file/write-case-data "orifice3p.cas.h5"
+yes
+/file/write-data "orifice3p.dat.h5"
+yes
+

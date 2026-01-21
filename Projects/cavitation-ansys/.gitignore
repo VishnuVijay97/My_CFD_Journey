@@ -1,0 +1,32 @@
+# ---------- Ignore ALL heavy Fluent outputs in this project ----------
+*.trn
+*.out
+*.log
+
+*.cas
+*.dat
+*.cas.h5
+*.dat.h5
+*.msh
+*.msh.gz
+*.msh.h5
+
+*_workflow_files/
+sol/
+geomtery/
+mesh/
+case and data/
+
+# ---------- Allow ONLY the minimal reproducible inputs ----------
+!data/
+!data/orifice.msh.h5
+!data/orifice.cas.h5
+!data/fix.jou
+
+# ---------- Keep your docs + small preview images ----------
+!Cavitation.pdf
+!Cavitation.pptx
+!meshpu12.png
+!meshpuc.png
+!pr_bar.png
+!vel_bar.png
